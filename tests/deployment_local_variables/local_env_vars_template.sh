@@ -9,7 +9,8 @@ set -e
 
 # # #* Update the env vars with your Azure subscription and SPN values
 
-# # #* Rename the script from "local_env_vars.sh" ==> "local_env_vars.ignore.sh"
+# # #* Rename the script: "local_env_vars_template.sh" ==> "local_env_vars.ignore.sh"
+# # #* Renaming the script to: "local_env_vars.ignore.sh" will add it to the .gitignore list.
 
 # # # Azure CLI env vars
 ARM_TENANT_ID=""
