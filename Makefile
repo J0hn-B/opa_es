@@ -21,6 +21,7 @@ opa-run-tests:
 
 docker_build:
 	#docker scan --file tests/Dockerfile terraform
-	cd tests/ && docker build --no-cache -t terraform .
+	cd tests/ && docker build -t terraform .
 	docker run -it --rm terraform /bin/bash
 	docker image prune -f
+    #docker builder prune -a
