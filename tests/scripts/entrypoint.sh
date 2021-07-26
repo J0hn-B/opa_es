@@ -7,7 +7,8 @@ set -e
 # - Test Terraform Deployment
 #
 
-source deployment_local_variables/local_env_vars.sh
+source deployment_local_variables/local_env_vars.ignore.sh
+source deployment_local_variables/terraform_env_vars.sh
 
 # # #* Azure CLI login
 echo "==> Authenticating cli..."
