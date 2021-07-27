@@ -2,7 +2,9 @@
 # Makefile
 #
 
-# Azure Pipelines
+#
+# Local Development
+#
 
 # # #* Targets execution order
 local_development: opa-install \
@@ -23,3 +25,8 @@ docker_build:
 	docker build -t terraform .
 	docker run -it --rm terraform /bin/bash
 	docker image prune -f
+
+
+#
+# Azure Pipelines
+#

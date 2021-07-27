@@ -33,17 +33,9 @@ We are using `terraform plan` to generate a plan and we convert that plan to a \
 
 **Option 1:**
 
-Navigate to the modules `tests/scripts` directory.
+From within `tests/` directory.
 
-- In the `scripts` directory, execute `opa-values-generator.*`, based on your OS.
-
-  - For Linux: `./opa-values-generator.sh`
-
-  - For Windows: `.\opa-values-generator.ps1`
-
-The script will try to install all the missing utilities, run `terraform plan` and execute `conftest`.
-
-- Choose **y** or **n** and follow the cmd prompt.
+`make`
 
 **Option 2:**
 
@@ -60,9 +52,7 @@ Navigate to the modules `tests` directory.
 - In your `tests/scripts/opa-values-generator.sh`, update the path in line 26:
   **MODULE_PATH="../deployment_2"**
 
-- In your terminal, go to `tests/scripts` directory and execute `./opa-values-generator.sh`
-
-- Answer **y** in: `Do you want to prepare files for repository (y/n)?`
+- From within `tests/` directory: `make`
 
 - Delete dir `deployment_2`
 
