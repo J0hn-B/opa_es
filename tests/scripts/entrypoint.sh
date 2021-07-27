@@ -37,9 +37,6 @@ echo "==> Removing the original plan..."
 rm "$TERRAFORM_VERSION".plan
 
 # # #* OPA run tests
-TF_ROOT_ID_1=root-id-1 ##"${RANDOM}-es"
-TF_ROOT_ID_2=root-id-2 ##"${RANDOM}-es"
-TF_ROOT_ID_3=root-id-3 ## "${RANDOM}-es"
 
 TF_PLAN_JSON="$TERRAFORM_VERSION".json
 
@@ -49,18 +46,13 @@ TEMP_FILE_02=$(mktemp).json
 
 # # # Update the planned_values.json with the latest parameters
 echo "==> Update planned values..."
-#cd "tests/deployment" # # # "$PIPELINE_WORKSPACE/s/tests/deployment"
-jq '(.. | strings) |= gsub("root-id-1"; "'"$TF_ROOT_ID_1"'")' planned_values.json >"$TEMP_FILE_01"
-jq '(.. | strings) |= gsub("root-id-2"; "'"$TF_ROOT_ID_2"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
-jq '(.. | strings) |= gsub("root-id-3"; "'"$TF_ROOT_ID_3"'")' "$TEMP_FILE_02" >"$TEMP_FILE_01"
-jq '(.. | strings) |= gsub("root-name"; "ES-'"$TF_VERSION"'-'"$TF_AZ_VERSION"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
-jq '(.. | strings) |= gsub("eastus"; "eastus")' "$TEMP_FILE_02" >"$TF_PLAN_JSON"_updated_planned_values.json
-
-echo "==> Module Location - $DEFAULT_LOCATION"
-echo "==> Azure {TF_ROOT_ID_1} - ${TF_ROOT_ID_1}"
-echo "==> Azure TF_ROOT_ID_1 - $TF_ROOT_ID_1"
-
-wait
+#cd "deployment/"
+pwd
+jq '(.. | strings) |= gsub("root-id-1"; "'"$TF_VAR_root_id_1"'")' planned_values.json >"$TEMP_FILE_01"
+jq '(.. | strings) |= gsub("root-id-2"; "'"$TF_VAR_root_id_2"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
+jq '(.. | strings) |= gsub("root-id-3"; "'"$TF_VAR_root_id_3"'")' "$TEMP_FILE_02" >"$TEMP_FILE_01"
+jq '(.. | strings) |= gsub("root-name"; "'"$TF_VAR_root_name"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
+jq '(.. | strings) |= gsub("eastus"; "'"$TF_VAR_location"'")' "$TEMP_FILE_02" >"$TF_PLAN_JSON"_updated_planned_values.json
 
 echo "==> Converting to yaml..."
 yq <"$TF_PLAN_JSON"_updated_planned_values.json e -P - >../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
@@ -69,8 +61,6 @@ wait
 
 echo "==> Check yaml for errors..."
 yamllint -d relaxed ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
-
-cat "$TERRAFORM_VERSION".json ###!!!!!
 
 echo "==> Running conftest..."
 echo

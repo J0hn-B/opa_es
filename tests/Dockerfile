@@ -38,6 +38,6 @@ COPY scripts/ ./scripts
 
 COPY deployment_local_variables/ ./deployment_local_variables
 
-# RUN ["chmod", "+x", "/tests/scripts/entrypoint.sh"]
+RUN ["chmod", "+x", "/tests/scripts/entrypoint.sh"]
 
-# ENTRYPOINT ["/tests/scripts/entrypoint.sh"]
+ENTRYPOINT ["/tests/scripts/entrypoint.sh"]
