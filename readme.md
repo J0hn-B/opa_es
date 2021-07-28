@@ -17,9 +17,23 @@ With Open Policy Agent being the policy engine, a set of utilities is required t
 
 ## How it works
 
+The test suite is used to verify the values generated from the module(s) between different terraform versions and different terraform providers.
+
+- Running locally the first time, a `terraform plan` is generated using the terraform version and azurerm provider of your environment. A `planned_values` file containing data which will be used as `--data` input when testing, is created.
+
+  - Using `planned_values` file, tests are executed locally and expected to be successful.
+
+    - The, locally generated, `planned_values` file is saved and after pushed in the repo, used as Conftest `--data` input against different terraform versions and different terraform providers on the remote pipeline runners.
+
 ### Workstation
 
-We are using `terraform plan` to generate a plan and we convert that plan to a \*.json file. We then extract the module(s) `planned_values` and we validate they are equal to the plan's `changed_values`.
+1. The `opa-values-generator.sh` or `.ps1` script will read the `.tf` files in the deployment directory and generate a plan with `terraform plan`.
+
+2. Will convert that plan to a \*.json file. Next, will extract the module(s) `planned_values` and validate they are equal to the plan's `changed_values`. A file `planned_values.json` is generated and stored in the `deployment` directory.
+
+3. Using the `planned_values` all the tests are executed locally to verify the values and Open Policy Agent rules behavior.
+
+4. The `planned_values.json` is saved and added to the `deployment`. Will be used later from the automation pipeline runners.
 
 ### Usage
 
@@ -33,9 +47,15 @@ We are using `terraform plan` to generate a plan and we convert that plan to a \
 
 **Option 1:**
 
-From within `tests/` directory.
+From within `tests/` directory:
 
 `make`
+
+A `planned_values.json` is added in your deployment directory.
+
+Will be used later in the automation pipelines.
+
+![image](https://user-images.githubusercontent.com/40946247/127209046-0c667eca-b38d-453a-b724-7da49779689b.png)
 
 **Option 2:**
 
@@ -52,7 +72,9 @@ Navigate to the modules `tests` directory.
 - In your `tests/scripts/opa-values-generator.sh`, update the path in line 26:
   **MODULE_PATH="../deployment_2"**
 
-- From within `tests/` directory: `make`
+- From within `tests/` directory:
+
+  - `make`
 
 - Delete dir `deployment_2`
 
