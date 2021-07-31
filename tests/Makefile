@@ -22,11 +22,23 @@ opa-values-generator:
 
 
 docker_build:
-	docker build -t terraform .
+	docker build --build-arg TERRAFORM_VERSION=1.0.3 -t terraform .
 	docker run -it --rm terraform /bin/bash
 	docker image prune -f
+
+docker_inspect:
+	docker inspect terraform_0.14.0
+
 
 
 #
 # Azure Pipelines
 #
+
+docker_cloud_build:
+	@echo "==> Test cloud runners..."
+	pipelines/deployment.sh
+	# docker run -it --rm terraform_0.14.0 /bin/bash
+	# docker run -it --rm terraform_0.15.0 /bin/bash
+	# docker run -it --rm terraform_1.0.0 /bin/bash
+

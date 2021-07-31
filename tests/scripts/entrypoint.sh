@@ -27,6 +27,9 @@ terraform fmt -diff -check -recursive
 echo "==> Initialize Terraform configuration files..."
 terraform init
 
+echo "==> Return the azurerm provider version..."
+cat .*.lock.hcl
+
 echo "==>  Create a Terraform execution plan..."
 terraform plan -out="$TERRAFORM_VERSION".plan
 

@@ -1,19 +1,12 @@
 
-# # # Setup build arguments with default versions
-ARG TERRAFORM_VERSION=1.0.3
-ARG CONFTEST_VERSION=0.24.0
-ARG YQ_VERSION=v4.9.3
-
-#TODO: Add azurerm provider version
-
 # # # Install packages
 FROM mcr.microsoft.com/azure-cli
 
+ARG AZURERM_PROVIDER
 ARG TERRAFORM_VERSION
-ARG CONFTEST_VERSION
-ARG YQ_VERSION
+ARG CONFTEST_VERSION=0.24.0
+ARG YQ_VERSION=v4.9.3
 
-ENV TERRAFORM_VERSION=$TERRAFORM_VERSION
 
 RUN apk add --no-cache --virtual  prepare_container jq yamllint
 
@@ -31,6 +24,8 @@ RUN wget https://github.com/open-policy-agent/conftest/releases/download/v${CONF
 WORKDIR  /tests
 
 COPY deployment/ ./deployment
+
+COPY .terraform.lock.hcl ./deployment
 
 COPY opa/ ./opa
 
