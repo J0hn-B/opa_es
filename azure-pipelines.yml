@@ -10,13 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-- job: Build
+- job: "Terraform_Version"
   strategy:
     matrix:
-      Terraform:
+      min_supported_version:
         TERRAFORM_VERSION: '0.14.0'
-      Python36:
+      mid_supported_version:
         TERRAFORM_VERSION: '0.15.0'
-      Python37:
+      latest_supported_version:
         TERRAFORM_VERSION: '1.0.0'
     maxParallel: "3"
