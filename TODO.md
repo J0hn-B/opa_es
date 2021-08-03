@@ -6,11 +6,13 @@ Project Description
 
 ### Todo
 
+- [ ] Release: Azure Container Instances with managed identities  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] Build: Create a new Dockerfile with no dependencies on entrypoint.sh  
 - [x] Automate azurerm_provider version installation using a dependency lock file  
 

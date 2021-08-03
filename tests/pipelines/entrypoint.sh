@@ -6,29 +6,41 @@ set -e
 # Shell Script
 # - Test Terraform Deployment
 #
+# # #
 
+# # #! temp source
+#TODO remove
 source deployment_local_variables/local_env_vars.ignore.sh
-source deployment_local_variables/terraform_env_vars.sh
+
+source pipelines/terraform_env_vars.sh
 
 # # #* Azure CLI login
 echo "==> Authenticating cli..."
 az login \
-    --service-principal \
-    --tenant "$ARM_TENANT_ID" \
-    --username "$ARM_CLIENT_ID" \
-    --password "$ARM_CLIENT_SECRET" \
-    --query [?isDefault]
+  --service-principal \
+  --tenant "$ARM_TENANT_ID" \
+  --username "$ARM_CLIENT_ID" \
+  --password "$ARM_CLIENT_SECRET" \
+  --query [?isDefault]
 
 # # #* Terraform Init and Plan
 echo "==> Format and style Terraform configuration files..."
 cd deployment
 terraform fmt -diff -check -recursive
 
+echo "==> Update the azurerm provider version..."
+cat >.terraform.lock.hcl <<EOF
+        # This file is maintained automatically by "terraform init".
+        # Manual edits may be lost in future updates.
+        
+        provider "registry.terraform.io/hashicorp/azurerm" {
+          version     = "${AZURERM_PROVIDER}"
+          constraints = ">= 2.41.0"
+        }
+EOF
+
 echo "==> Initialize Terraform configuration files..."
 terraform init
-
-echo "==> Return the azurerm provider version..."
-cat .*.lock.hcl
 
 echo "==>  Create a Terraform execution plan..."
 terraform plan -out="$TERRAFORM_VERSION".plan
@@ -62,8 +74,8 @@ yq <"$TF_PLAN_JSON"_updated_planned_values.json e -P - >../opa/policy/"$TF_PLAN_
 
 wait
 
-echo "==> Check yaml for errors..."
-yamllint -d relaxed ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+echo "==> Check "$TF_PLAN_JSON"_updated_planned_values.yml for errors..."
+yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-breakable-words: true, allow-non-breakable-inline-mappings: true}}}" ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 
 echo "==> Running conftest..."
 echo
