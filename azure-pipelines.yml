@@ -9,11 +9,14 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+jobs:
+- job: Build
+  strategy:
+    matrix:
+      Terraform:
+        TERRAFORM_VERSION: '0.14.0'
+      Python36:
+        TERRAFORM_VERSION: '0.15.0'
+      Python37:
+        TERRAFORM_VERSION: '1.0.0'
+    maxParallel: "3"
