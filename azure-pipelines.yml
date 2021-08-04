@@ -1,4 +1,4 @@
-name: 'Terraform Images Build ==>'
+name: 'Terraform Images Build'
 
 trigger:
 - main
