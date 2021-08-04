@@ -16,7 +16,7 @@ jobs:
       scriptLocation: 'inlineScript'
       inlineScript: |
         az group create --name es-test --location uksouth
-        az acr create --resource-group es-test \ --name esAcRegistry --sku Basic
+        az acr create --resource-group es-test --name esAcRegistry --sku Basic
 
 - job: "Terraform_"
   strategy:
