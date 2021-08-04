@@ -7,6 +7,16 @@ pool:
   vmImage: ubuntu-20.04
 
 jobs:
+- job: "Create_ACR"
+  steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          az group create --name es-test --location uksouth
+          az acr create --resource-group es-test \
+          --name esAcRegistry --sku Basic
+
 - job: "Terraform_"
   strategy:
     matrix:
