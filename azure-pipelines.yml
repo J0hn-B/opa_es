@@ -1,4 +1,4 @@
-name: 'Build Test Images'
+name: 'Build Test Images:'
 
 trigger:
 - main
