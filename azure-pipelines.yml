@@ -9,13 +9,14 @@ pool:
 jobs:
 - job: "Create_ACR"
   steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          az group create --name es-test --location uksouth
-          az acr create --resource-group es-test \
-          --name esAcRegistry --sku Basic
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'Main Subscription'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az group create --name es-test --location uksouth
+        az acr create --resource-group es-test \ --name esAcRegistry --sku Basic
 
 - job: "Terraform_"
   strategy:
@@ -35,3 +36,4 @@ jobs:
           # Write your commands here
           
           echo $TERRAFORM_VERSION
+
