@@ -33,8 +33,17 @@ jobs:
           AZURERM_PROVIDER: "2.70.0"
     steps:
       - task: Bash@3
+        name: "docker_build"
         inputs:
           targetType: "inline"
           script: |
             docker build --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER -t "$TERRAFORM_VERSION:$AZURERM_PROVIDER" .
+          workingDirectory: "tests/"
+
+      - task: Bash@3
+        name: "docker_run"
+        inputs:
+          targetType: "inline"
+          script: |
+            docker run -it --rm "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
