@@ -34,10 +34,11 @@ jobs:
     inputs:
       azureSubscription: 'Main Subscription'
       scriptType: 'bash'
+      workingDirectory: 'tests/'
       scriptLocation: 'inlineScript'
       inlineScript: |
         ls -l
-        #az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
+        az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
           
      
 
