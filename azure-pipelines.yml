@@ -30,10 +30,13 @@ jobs:
         TERRAFORM_VERSION: '1.0.0'
     maxParallel: "3"
   steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'Main Subscription'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
+          
      
 
