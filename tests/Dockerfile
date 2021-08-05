@@ -34,6 +34,6 @@ COPY opa/ ./opa
 
 COPY pipelines/ ./pipelines
 
-RUN ["chmod", "+x", "pipelines/*.sh"]
+RUN ["chmod", "+x", "/pipelines/*.sh"]
 
 CMD pipelines/entrypoint.sh
