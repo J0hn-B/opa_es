@@ -1,43 +1,51 @@
-name: 'Terraform Images'
+name: "Terraform Images"
 
 trigger:
-- main
+  - main
 
 pool:
   vmImage: ubuntu-20.04
 
 jobs:
-- job: Create_ACR
-  steps:
-  - task: AzureCLI@2
-    inputs:
-      azureSubscription: 'Main Subscription'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: |
-        az group create --name es-test --location uksouth
-        az acr create --resource-group es-test --name esAcRegistry --sku Basic
+  - job: Create_ACR
+    steps:
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: "Main Subscription"
+          scriptType: "bash"
+          scriptLocation: "inlineScript"
+          inlineScript: |
+            az group create --name es-test --location uksouth
+            az acr create --resource-group es-test --name esAcRegistry --sku Basic
 
-- job: Terraform_
-  dependsOn: Create_ACR
-  strategy:
-    matrix:
-      min_supported_version:
-        TERRAFORM_VERSION: '0.14.0'
-        AZURERM_PROVIDER: '2.41.0'
-      mid_supported_version:
-        TERRAFORM_VERSION: '0.15.0'
-        AZURERM_PROVIDER: '2.62.0'
-      latest_supported_version:
-        TERRAFORM_VERSION: '1.0.0'
-        AZURERM_PROVIDER: '2.70.0'
-  steps:
-  - task: AzureCLI@2
-    inputs:
-      azureSubscription: 'Main Subscription'
-      scriptType: 'bash'
-      workingDirectory: 'tests/'
-      scriptLocation: 'inlineScript'
-      inlineScript: |
-        az acr build --registry esAcRegistry --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER --image $TERRAFORM_VERSION:$AZURERM_PROVIDER .
+  - job: Terraform_
+    dependsOn: Create_ACR
+    strategy:
+      matrix:
+        min_supported_version:
+          TERRAFORM_VERSION: "0.14.0"
+          AZURERM_PROVIDER: "2.41.0"
+        mid_supported_version:
+          TERRAFORM_VERSION: "0.15.0"
+          AZURERM_PROVIDER: "2.62.0"
+        latest_supported_version:
+          TERRAFORM_VERSION: "1.0.0"
+          AZURERM_PROVIDER: "2.70.0"
+    steps:
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: "Main Subscription"
+          scriptType: "bash"
+          workingDirectory: "tests/"
+          scriptLocation: "inlineScript"
+          inlineScript: |
+            az acr build --registry esAcRegistry --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER --image $TERRAFORM_VERSION:$AZURERM_PROVIDER .
 
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: "Main Subscription"
+          scriptType: "bash"
+          workingDirectory: "tests/"
+          scriptLocation: "inlineScript"
+          inlineScript: |
+            az container create -g es-test --name $TERRAFORM_VERSION --image esAcRegistry.azurecr.io/$TERRAFORM_VERSION:$AZURERM_PROVIDER --assign-identity --cpu 4 --memory 8
