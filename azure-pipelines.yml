@@ -40,13 +40,13 @@ jobs:
             docker build --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER -t "$TERRAFORM_VERSION:$AZURERM_PROVIDER" .
           workingDirectory: "tests/"
 
-      - task: Bash@3
-        name: "update_permissions"
-        inputs:
-          targetType: "inline"
-          script: |
-            chmod +x pipelines/*.sh
-          workingDirectory: "tests/"
+      # - task: Bash@3
+      #   name: "update_permissions"
+      #   inputs:
+      #     targetType: "inline"
+      #     script: |
+      #       chmod +x pipelines/*.sh
+      #     workingDirectory: "tests/"
 
       - task: Bash@3
         name: "docker_run"
