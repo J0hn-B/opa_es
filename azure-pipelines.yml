@@ -48,4 +48,4 @@ jobs:
           workingDirectory: "tests/"
           scriptLocation: "inlineScript"
           inlineScript: |
-            az container create -g es-test --name $TERRAFORM_VERSION --image esAcRegistry.azurecr.io/$TERRAFORM_VERSION:$AZURERM_PROVIDER --assign-identity --cpu 4 --memory 8
+            az container create -g es-test --name $TERRAFORM_VERSION --image esacregistry.azurecr.io/$TERRAFORM_VERSION:$AZURERM_PROVIDER --assign-identity --cpu 4 --memory 8
