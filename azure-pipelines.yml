@@ -37,8 +37,5 @@ jobs:
       workingDirectory: 'tests/'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        ls -l
-        az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
-          
-     
+        az acr build --registry esAcRegistry --build-arg TERRAFORM_VERSION=1.0.1 --build-arg AZURERM_PROVIDER=2.41.0 --image $TERRAFORM_VERSION:v1 .
 

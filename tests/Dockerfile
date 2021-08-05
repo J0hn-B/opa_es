@@ -32,10 +32,6 @@ COPY deployment/ ./deployment
 
 COPY opa/ ./opa
 
-# # #! temp source 
-#TODO remove
-COPY deployment_local_variables/ ./deployment_local_variables
-
 COPY pipelines/ ./pipelines
 
 CMD pipelines/entrypoint.sh
