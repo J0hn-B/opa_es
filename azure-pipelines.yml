@@ -34,7 +34,6 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          # Write your commands here
-          
-          echo $TERRAFORM_VERSION
+          az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
+     
 
