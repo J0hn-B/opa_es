@@ -45,7 +45,7 @@ jobs:
         inputs:
           targetType: "inline"
           script: |
-            chmod+x pipelines/*.sh
+            chmod +x pipelines/*.sh
           workingDirectory: "tests/"
 
       - task: Bash@3
