@@ -40,12 +40,3 @@ jobs:
           scriptLocation: "inlineScript"
           inlineScript: |
             az acr build --registry esAcRegistry --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER --image $TERRAFORM_VERSION:$AZURERM_PROVIDER .
-
-      - task: AzureCLI@2
-        inputs:
-          azureSubscription: "Main Subscription"
-          scriptType: "bash"
-          workingDirectory: "tests/"
-          scriptLocation: "inlineScript"
-          inlineScript: |
-            az container create -g es-test --name $TERRAFORM_VERSION --image esacregistry.azurecr.io/$TERRAFORM_VERSION:$AZURERM_PROVIDER --assign-identity --cpu 4 --memory 8
