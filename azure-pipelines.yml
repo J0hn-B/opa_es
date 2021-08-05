@@ -1,4 +1,4 @@
-name: 'Terraform Images Build'
+name: 'Terraform Images'
 
 trigger:
 - main
@@ -7,7 +7,7 @@ pool:
   vmImage: ubuntu-20.04
 
 jobs:
-- job: "Create_ACR"
+- job: Create_ACR
   steps:
   - task: AzureCLI@2
     inputs:
@@ -18,7 +18,8 @@ jobs:
         az group create --name es-test --location uksouth
         az acr create --resource-group es-test --name esAcRegistry --sku Basic
 
-- job: "Terraform_"
+- job: Terraform_
+  dependsOn: Create_ACR
   strategy:
     matrix:
       min_supported_version:
