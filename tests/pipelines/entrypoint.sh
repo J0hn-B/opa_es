@@ -8,10 +8,6 @@ set -e
 #
 # # #
 
-# # #! temp source
-#TODO remove
-source deployment_local_variables/local_env_vars.ignore.sh
-
 source pipelines/terraform_env_vars.sh
 
 # # #* Azure CLI login
