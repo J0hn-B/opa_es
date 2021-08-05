@@ -31,7 +31,6 @@ jobs:
       latest_supported_version:
         TERRAFORM_VERSION: '1.0.0'
         AZURERM_PROVIDER: '2.70.0'
-    maxParallel: "3"
   steps:
   - task: AzureCLI@2
     inputs:
