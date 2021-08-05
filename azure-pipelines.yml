@@ -53,5 +53,5 @@ jobs:
         inputs:
           targetType: "inline"
           script: |
-            docker run --rm "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
+            docker run "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
