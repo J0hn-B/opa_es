@@ -41,6 +41,14 @@ jobs:
           workingDirectory: "tests/"
 
       - task: Bash@3
+        name: "update_permissions"
+        inputs:
+          targetType: "inline"
+          script: |
+            chmod+x pipelines/*.sh
+          workingDirectory: "tests/"
+
+      - task: Bash@3
         name: "docker_run"
         inputs:
           targetType: "inline"
