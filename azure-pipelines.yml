@@ -36,7 +36,8 @@ jobs:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
-        az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
+        ls -l
+        #az acr build --registry esAcRegistry --image $TERRAFORM_VERSION:v1 .
           
      
 
