@@ -7,40 +7,52 @@ pool:
   vmImage: ubuntu-20.04
 
 jobs:
-  - job: Terraform_
+  - deployment: Terraform_ # name of the deployment job, A-Z, a-z, 0-9, and underscore. The word "deploy" is a keyword and is unsupported as the deployment name.
+    displayName: Terraform_Test # friendly name to display in the UI
+    pool: # see pool schema
+      vmImage: ubuntu-20.04 # Use only global level variables for defining a pool name. Stage/job level variables are not supported to define pool name.
+    #variables: # several syntaxes, see specific section
+    environment: staging # target environment name and optionally a resource name to record the deployment history; format: <environment-name>.<resource-name>
     strategy:
-      matrix:
-        min_supported_version:
-          TERRAFORM_VERSION: "0.14.0"
-          AZURERM_PROVIDER: "2.41.0"
-        mid_supported_version:
-          TERRAFORM_VERSION: "0.15.0"
-          AZURERM_PROVIDER: "2.62.0"
-        latest_supported_version:
-          TERRAFORM_VERSION: "1.0.0"
-          AZURERM_PROVIDER: "2.70.0"
-    steps:
-      # - task: AzureCLI@2
-      #   name: "az_login"
-      #   inputs:
-      #     azureSubscription: "Main Subscription"
-      #     scriptType: "bash"
-      #     scriptLocation: "inlineScript"
-      #     inlineScript: |
-      #       az account show
+      runOnce: #rolling, canary are the other strategies that are supported
+        deploy:
+          steps:
+            - script: echo "my first deployment"
 
-      - task: Bash@3
-        name: "docker_build"
-        inputs:
-          targetType: "inline"
-          script: |
-            docker build --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER -t "$TERRAFORM_VERSION:$AZURERM_PROVIDER" .
-          workingDirectory: "tests/"
+    # - job: Terraform_
+    #   strategy:
+    #     matrix:
+    #       min_supported_version:
+    #         TERRAFORM_VERSION: "0.14.0"
+    #         AZURERM_PROVIDER: "2.41.0"
+    #       mid_supported_version:
+    #         TERRAFORM_VERSION: "0.15.0"
+    #         AZURERM_PROVIDER: "2.62.0"
+    #       latest_supported_version:
+    #         TERRAFORM_VERSION: "1.0.0"
+    #         AZURERM_PROVIDER: "2.70.0"
+    #   steps:
+    #     # - task: AzureCLI@2
+    #     #   name: "az_login"
+    #     #   inputs:
+    #     #     azureSubscription: "Main Subscription"
+    #     #     scriptType: "bash"
+    #     #     scriptLocation: "inlineScript"
+    #     #     inlineScript: |
+    #     #       az account show
 
-      - task: Bash@3
-        name: "docker_run"
-        inputs:
-          targetType: "inline"
-          script: |
-            docker run "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
-          workingDirectory: "tests/"
+    #     - task: Bash@3
+    #       name: "docker_build"
+    #       inputs:
+    #         targetType: "inline"
+    #         script: |
+    #           docker build --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER -t "$TERRAFORM_VERSION:$AZURERM_PROVIDER" .
+    #         workingDirectory: "tests/"
+
+    #     - task: Bash@3
+    #       name: "docker_run"
+    #       inputs:
+    #         targetType: "inline"
+    #         script: |
+    #           docker run "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
+    #         workingDirectory: "tests/"
