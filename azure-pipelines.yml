@@ -6,6 +6,10 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 
+variables:
+  ARM_TENANT_ID: $(TENANT_ID)
+  ARM_CLIENT_ID: $(CLIENT_ID)
+  ARM_CLIENT_SECRET: $(CLIENT_SECRET)
 jobs:
   - job: Terraform_
     strategy:
@@ -13,9 +17,6 @@ jobs:
         min_supported_version:
           TERRAFORM_VERSION: "0.14.0"
           AZURERM_PROVIDER: "2.41.0"
-          ARM_TENANT_ID: $(TENANT_ID)
-          ARM_CLIENT_ID: $(CLIENT_ID)
-          ARM_CLIENT_SECRET: $(CLIENT_SECRET)
         mid_supported_version:
           TERRAFORM_VERSION: "0.15.0"
           AZURERM_PROVIDER: "2.62.0"
