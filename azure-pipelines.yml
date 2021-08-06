@@ -4,9 +4,9 @@ trigger:
   - main
 
 variables:
-  GLOBAL_ARM_TENANT_ID: $(ARM_TENANT_ID)
-  GLOBAL_ARM_CLIENT_ID: $(ARM_CLIENT_ID)
-  GLOBAL_ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+  ARM_TENANT_ID: $(armTenantId)
+  ARM_CLIENT_ID: $(armClientId)
+  ARM_CLIENT_SECRET: $(armClientSecret)
 
 pool:
   vmImage: ubuntu-20.04
