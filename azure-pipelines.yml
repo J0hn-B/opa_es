@@ -3,9 +3,6 @@ name: "Terraform Images"
 trigger:
   - main
 
-pool: # see pool schema
-  vmImage: ubuntu-20.04
-
 stages:
   - stage: Build
     jobs:
