@@ -46,5 +46,5 @@ jobs:
         inputs:
           targetType: "inline"
           script: |
-            docker run "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
+            docker run -e ARM_TENANT_ID=$ARM_TENANT_ID -e ARM_CLIENT_ID=$ARM_CLIENT_ID -e ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
