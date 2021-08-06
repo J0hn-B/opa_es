@@ -20,14 +20,14 @@ jobs:
           TERRAFORM_VERSION: "1.0.0"
           AZURERM_PROVIDER: "2.70.0"
     steps:
-      - task: AzureCLI@2
-        name: "az_login"
-        inputs:
-          azureSubscription: "Main Subscription"
-          scriptType: "bash"
-          scriptLocation: "inlineScript"
-          inlineScript: |
-            az account show
+      # - task: AzureCLI@2
+      #   name: "az_login"
+      #   inputs:
+      #     azureSubscription: "Main Subscription"
+      #     scriptType: "bash"
+      #     scriptLocation: "inlineScript"
+      #     inlineScript: |
+      #       az account show
 
       - task: Bash@3
         name: "docker_build"
