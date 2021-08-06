@@ -33,6 +33,9 @@ jobs:
             echo "TenantID is:$(ARM_TENANT_ID)"
             echo "ClientID is:$(ARM_CLIENT_ID)"
           workingDirectory: "tests/"
+        env:
+          ARM_TENANT_ID: $(TENANT_ID)
+          ARM_CLIENT_ID: $(CLIENT_ID)
 
       - task: Bash@3
         name: "docker_build"
