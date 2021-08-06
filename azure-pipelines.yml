@@ -30,8 +30,8 @@ jobs:
         inputs:
           targetType: "inline"
           script: |
-            echo "TenantID is:$(ARM_TENANT_ID)"
-            echo "ClientID is:$(ARM_CLIENT_ID)"
+            echo "TenantID is:$ARM_TENANT_ID"
+            echo "ClientID is:$ARM_CLIENT_ID"
           workingDirectory: "tests/"
         env:
           ARM_TENANT_ID: $(TENANT_ID)
