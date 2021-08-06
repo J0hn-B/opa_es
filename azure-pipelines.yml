@@ -3,64 +3,35 @@ name: "Terraform Images"
 trigger:
   - main
 
-stages:
-  - stage: Build
-    jobs:
-      - job: Build
-        pool:
-          vmImage: "Ubuntu-16.04"
-        continueOnError: "true"
-        steps:
-          - script: echo my first build job
-  - stage: Deploy
-    jobs:
-      # track deployments on the environment
-      - deployment: DeployWeb
-        pool:
-          vmImage: "Ubuntu-16.04"
-        # creates an environment if it doesn’t exist
-        environment: "smarthotel-dev"
-        strategy:
-          # default deployment strategy
-          runOnce:
-            deploy:
-              steps:
-                - script: echo my first deployment
+pool:
+  vmImage: ubuntu-20.04
 
-        # - job: Terraform_
-        #   strategy:
-        #     matrix:
-        #       min_supported_version:
-        #         TERRAFORM_VERSION: "0.14.0"
-        #         AZURERM_PROVIDER: "2.41.0"
-        #       mid_supported_version:
-        #         TERRAFORM_VERSION: "0.15.0"
-        #         AZURERM_PROVIDER: "2.62.0"
-        #       latest_supported_version:
-        #         TERRAFORM_VERSION: "1.0.0"
-        #         AZURERM_PROVIDER: "2.70.0"
-        #   steps:
-        #     # - task: AzureCLI@2
-        #     #   name: "az_login"
-        #     #   inputs:
-        #     #     azureSubscription: "Main Subscription"
-        #     #     scriptType: "bash"
-        #     #     scriptLocation: "inlineScript"
-        #     #     inlineScript: |
-        #     #       az account show
+jobs:
+  - job: Terraform_
+    strategy:
+      matrix:
+        min_supported_version:
+          TERRAFORM_VERSION: "0.14.0"
+          AZURERM_PROVIDER: "2.41.0"
+        mid_supported_version:
+          TERRAFORM_VERSION: "0.15.0"
+          AZURERM_PROVIDER: "2.62.0"
+        latest_supported_version:
+          TERRAFORM_VERSION: "1.0.0"
+          AZURERM_PROVIDER: "2.70.0"
+    steps:
+      - task: Bash@3
+        name: "docker_build"
+        inputs:
+          targetType: "inline"
+          script: |
+            docker build --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER -t "$TERRAFORM_VERSION:$AZURERM_PROVIDER" .
+          workingDirectory: "tests/"
 
-        #     - task: Bash@3
-        #       name: "docker_build"
-        #       inputs:
-        #         targetType: "inline"
-        #         script: |
-        #           docker build --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER -t "$TERRAFORM_VERSION:$AZURERM_PROVIDER" .
-        #         workingDirectory: "tests/"
-
-        #     - task: Bash@3
-        #       name: "docker_run"
-        #       inputs:
-        #         targetType: "inline"
-        #         script: |
-        #           docker run "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
-        #         workingDirectory: "tests/"
+      - task: Bash@3
+        name: "docker_run"
+        inputs:
+          targetType: "inline"
+          script: |
+            docker run "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
+          workingDirectory: "tests/"
