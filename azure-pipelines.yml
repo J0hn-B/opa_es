@@ -3,11 +3,6 @@ name: "Terraform Images"
 trigger:
   - main
 
-variables:
-  ARM_TENANT_ID: $(armTenantId)
-  ARM_CLIENT_ID: $(armClientId)
-  ARM_CLIENT_SECRET: $(armClientSecret)
-
 pool:
   vmImage: ubuntu-20.04
 
