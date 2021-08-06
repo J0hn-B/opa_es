@@ -3,9 +3,6 @@ name: "Terraform Images"
 trigger:
   - main
 
-pool:
-  vmImage: ubuntu-20.04
-
 jobs:
   - deployment: Terraform_ # name of the deployment job, A-Z, a-z, 0-9, and underscore. The word "deploy" is a keyword and is unsupported as the deployment name.
     displayName: Terraform_Test # friendly name to display in the UI
