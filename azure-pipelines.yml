@@ -13,6 +13,9 @@ jobs:
         min_supported_version:
           TERRAFORM_VERSION: "0.14.0"
           AZURERM_PROVIDER: "2.41.0"
+          ARM_TENANT_ID: $(TENANT_ID)
+          ARM_CLIENT_ID: $(CLIENT_ID)
+          ARM_CLIENT_SECRET: $(CLIENT_SECRET)
         mid_supported_version:
           TERRAFORM_VERSION: "0.15.0"
           AZURERM_PROVIDER: "2.62.0"
@@ -28,9 +31,6 @@ jobs:
             echo "TenantID is:$ARM_TENANT_ID"
             echo "ClientID is:$ARM_CLIENT_ID"
           workingDirectory: "tests/"
-        env:
-          ARM_TENANT_ID: $(TENANT_ID)
-          ARM_CLIENT_ID: $(CLIENT_ID)
 
       - task: Bash@3
         name: "docker_build"
@@ -47,7 +47,3 @@ jobs:
           script: |
             docker run "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
-        env:
-          ARM_TENANT_ID: $(TENANT_ID)
-          ARM_CLIENT_ID: $(CLIENT_ID)
-          ARM_CLIENT_SECRET: $(CLIENT_SECRET)
