@@ -3,6 +3,11 @@ name: "Terraform Images"
 trigger:
   - main
 
+variables:
+  ARM_TENANT_ID: $(ARM_TENANT_ID)
+  ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+  ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+
 pool:
   vmImage: ubuntu-20.04
 
@@ -20,6 +25,15 @@ jobs:
           TERRAFORM_VERSION: "1.0.0"
           AZURERM_PROVIDER: "2.70.0"
     steps:
+      - task: Bash@3
+        name: "print_env"
+        inputs:
+          targetType: "inline"
+          script: |
+            echo "TenantID is:$(ARM_TENANT_ID)"
+            echo "ClientID is:$(ARM_CLIENT_ID)"
+          workingDirectory: "tests/"
+
       - task: Bash@3
         name: "docker_build"
         inputs:
