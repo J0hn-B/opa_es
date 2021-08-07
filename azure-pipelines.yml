@@ -6,7 +6,7 @@ trigger:
 pool:
   vmImage: ubuntu-20.04
 
-variables:
+variables: # Set the values on Azure DevOps build vars
   ARM_TENANT_ID: $(TENANT_ID)
   ARM_CLIENT_ID: $(CLIENT_ID)
   ARM_CLIENT_SECRET: $(CLIENT_SECRET)
@@ -16,13 +16,13 @@ jobs:
     strategy:
       matrix:
         min_supported_version:
-          TERRAFORM_VERSION: "0.14.0"
-          AZURERM_PROVIDER: "2.41.0"
-        mid_supported_version:
           TERRAFORM_VERSION: "0.15.0"
-          AZURERM_PROVIDER: "2.62.0"
-        latest_supported_version:
+          AZURERM_PROVIDER: "2.66.0"
+        mid_supported_version:
           TERRAFORM_VERSION: "1.0.0"
+          AZURERM_PROVIDER: "2.69.0"
+        latest_supported_version:
+          TERRAFORM_VERSION: "1.0.4"
           AZURERM_PROVIDER: "2.70.0"
     steps:
       - task: Bash@3
@@ -31,7 +31,8 @@ jobs:
           targetType: "inline"
           script: |
             echo "TenantID is:$ARM_TENANT_ID"
-            echo "ClientID is:$ARM_CLIENT_ID"
+            echo "Terraform_Version is:$TERRAFORM_VERSION"
+            echo "Azurerm_Provider is:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
 
       - task: Bash@3
