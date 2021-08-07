@@ -11,7 +11,7 @@ variables: # Set the values on Azure DevOps build vars
 jobs:
   - job: Terraform_
     strategy:
-      matrix:
+      matrix: # If github repo and azure devops project are both Public, the 3 jobs run in parallel. If Private, one at a time
         min_supported_version:
           TERRAFORM_VERSION: "0.15.0"
           AZURERM_PROVIDER: "2.66.0"
