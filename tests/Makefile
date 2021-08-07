@@ -8,8 +8,8 @@
 
 
 local: opa-install \
-opa-values-generator \
-docker_build
+opa-values-generator 
+
 
 
 # # #* Targets

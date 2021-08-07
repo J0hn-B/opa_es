@@ -34,7 +34,6 @@ jobs:
         inputs:
           targetType: "inline"
           script: |
-            echo "TenantID is:$ARM_TENANT_ID"
             echo "Terraform_Version is:$TERRAFORM_VERSION"
             echo "Azurerm_Provider is:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
