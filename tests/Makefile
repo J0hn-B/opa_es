@@ -6,6 +6,7 @@
 # Local Development
 #
 
+# # #? Make local ==> Generate values for testing automation
 
 local: opa-install \
 opa-values-generator 
@@ -21,10 +22,10 @@ opa-values-generator:
 	@echo "==> Run tests and generate pipeline testing values..."
 	cd scripts; ./opa-values-generator.sh
 
-
+# # #? Make docker_build ==> Test the docker image locally
 docker_build:
 	docker build --build-arg TERRAFORM_VERSION=1.0.3 --build-arg AZURERM_PROVIDER=2.70.0 -t terraform .
-	docker run -it --rm terraform 
+	docker run --env-file .env terraform
 	docker image prune -f
 
 docker_inspect:
