@@ -23,6 +23,7 @@ RUN  wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terrafor
 RUN wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && \
     tar xzf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz && mv conftest /usr/local/bin && rm -rf conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz
 
+LABEL tf_version=${TERRAFORM_VERSION}
 
 # # # Starting directory
 WORKDIR  /tests
