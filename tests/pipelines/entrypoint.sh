@@ -76,19 +76,19 @@ yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-break
 echo "==> Running conftest..."
 echo
 echo "==> Testing management_groups..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit
 echo
 echo "==> Testing role_definitions..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/role_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/role_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit
 echo
 echo "==> Testing role_assignments..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/role_assignments.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/role_assignments.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit
 echo
 echo "==> Testing policy_set_definitions..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/policy_set_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/policy_set_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit
 echo
 echo "==> Testing policy_definitions..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/policy_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/policy_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit
 echo
 echo "==> Testing policy_assignments..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/policy_assignments.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/policy_assignments.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit
