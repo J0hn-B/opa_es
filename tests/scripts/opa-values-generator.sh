@@ -58,7 +58,7 @@ echo "==> Converting to yaml..."
 yq <planned_values.json e -P - >../opa/policy/planned_values.yml
 
 echo "==> Check yaml for errors..."
-yamllint -d relaxed ../opa/policy/planned_values.yml
+yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-breakable-words: true, allow-non-breakable-inline-mappings: true}}}" ../opa/policy/planned_values.yml
 
 echo "==> Running conftest..."
 cd $MODULE_PATH
