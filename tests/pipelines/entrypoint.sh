@@ -76,7 +76,7 @@ yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-break
 echo "==> Running conftest..."
 echo
 echo "==> Testing management_groups..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit >../opa/test_results/management_groups.xml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit >tests/opa/test_results/management_groups.xml
 echo
 echo "==> Testing role_definitions..."
 conftest test "$TF_PLAN_JSON" -p ../opa/policy/role_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit >../opa/test_results/role_definitions.xml
