@@ -37,7 +37,6 @@ jobs:
             echo "Terraform_Version is:$TERRAFORM_VERSION"
             echo "Azurerm_Provider is:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
-
       - task: Bash@3
         name: "docker_build"
         inputs:
@@ -45,7 +44,6 @@ jobs:
           script: |
             docker build --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION --build-arg AZURERM_PROVIDER=$AZURERM_PROVIDER -t "$TERRAFORM_VERSION:$AZURERM_PROVIDER" .
           workingDirectory: "tests/"
-
       - task: Bash@3
         name: "docker_run"
         inputs:
@@ -53,6 +51,11 @@ jobs:
           script: |
             docker run --name "$TERRAFORM_VERSION" -e ARM_TENANT_ID=$ARM_TENANT_ID -e ARM_CLIENT_ID=$ARM_CLIENT_ID -e ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET \
             -e ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
-            docker cp "$TERRAFORM_VERSION":tests/deployment/test_results/. ./opa/test_results/
+            docker cp "$TERRAFORM_VERSION":tests/deployment/test_results/. $(System.DefaultWorkingDirectory)
             ls -a ./opa/test_results/
           workingDirectory: "tests/"
+
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: "JUnit"
+          testResultsFiles: "**/*.xml"
