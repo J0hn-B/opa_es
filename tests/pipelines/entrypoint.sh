@@ -69,7 +69,7 @@ echo "==> Converting to yaml..."
 yq <"$TF_PLAN_JSON"_updated_planned_values.json e -P - >../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 
 wait
-
+pwd
 echo "==> Check "$TF_PLAN_JSON"_updated_planned_values.yml for errors..."
 yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-breakable-words: true, allow-non-breakable-inline-mappings: true}}}" ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 
