@@ -69,14 +69,14 @@ echo "==> Converting to yaml..."
 yq <"$TF_PLAN_JSON"_updated_planned_values.json e -P - >../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 
 wait
-pwd
+
 echo "==> Check "$TF_PLAN_JSON"_updated_planned_values.yml for errors..."
 yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-breakable-words: true, allow-non-breakable-inline-mappings: true}}}" ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 
 echo "==> Running conftest..."
 echo
 echo "==> Testing management_groups..."
-conftest test "$TF_PLAN_JSON" -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit >tests/opa/test_results/management_groups.xml
+conftest test "$TF_PLAN_JSON" -p ../opa/policy/management_groups.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit >../opa/test_results/management_groups.xml
 echo
 echo "==> Testing role_definitions..."
 conftest test "$TF_PLAN_JSON" -p ../opa/policy/role_definitions.rego -d ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml -o junit >../opa/test_results/role_definitions.xml
