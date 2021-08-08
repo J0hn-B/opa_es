@@ -52,7 +52,7 @@ jobs:
             docker run --name "$TERRAFORM_VERSION" -e ARM_TENANT_ID=$ARM_TENANT_ID -e ARM_CLIENT_ID=$ARM_CLIENT_ID -e ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET \
             -e ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID "$TERRAFORM_VERSION:$AZURERM_PROVIDER"
             docker cp "$TERRAFORM_VERSION":tests/deployment/test_results/. $(System.DefaultWorkingDirectory)
-            ls -a ./opa/test_results/
+            ls -a $(System.DefaultWorkingDirectory)
           workingDirectory: "tests/"
 
       - task: PublishTestResults@2
