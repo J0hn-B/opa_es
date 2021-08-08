@@ -63,8 +63,9 @@ yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-break
 echo "==> Running conftest..."
 cd $MODULE_PATH
 echo
+mkdir -p test_results
 echo "==> Testing management_groups..."
-conftest test "$PLAN_NAME".json -p ../opa/policy/management_groups.rego -d ../opa/policy/planned_values.yml
+conftest test "$PLAN_NAME".json -p ../opa/policy/management_groups.rego -d ../opa/policy/planned_values.yml -o junit | tee test_results/management_groups.xml
 echo
 echo "==> Testing role_definitions..."
 conftest test "$PLAN_NAME".json -p ../opa/policy/role_definitions.rego -d ../opa/policy/planned_values.yml
