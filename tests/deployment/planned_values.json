@@ -5,7 +5,7 @@
         {
           "address": "module.test_root_id_1.azurerm_management_group.level_1[\"/providers/Microsoft.Management/managementGroups/root-id-1\"]",
           "mode": "managed",
-          "type": "azurerm_management_group",
+          "type": "azurerm_management_grou",
           "name": "level_1",
           "index": "/providers/Microsoft.Management/managementGroups/root-id-1",
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
@@ -172,9 +172,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -204,9 +202,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -236,9 +232,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -268,9 +262,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -300,9 +292,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -332,9 +322,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -364,9 +352,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -396,9 +382,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -428,9 +412,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -460,9 +442,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -492,9 +472,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -524,9 +502,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -556,9 +532,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -588,9 +562,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -620,9 +592,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -652,9 +622,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -684,9 +652,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -716,9 +682,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -748,9 +712,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -780,9 +742,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5313,9 +5273,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "assignable_scopes": [
-              false
-            ],
+            "assignable_scopes": [false],
             "permissions": [
               {
                 "actions": [
@@ -5675,9 +5633,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5707,9 +5663,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5739,9 +5693,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5771,9 +5723,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5803,9 +5753,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5835,9 +5783,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5867,9 +5813,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5899,9 +5843,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5931,9 +5873,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5963,9 +5903,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -5995,9 +5933,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6027,9 +5963,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6059,9 +5993,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6091,9 +6023,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6123,9 +6053,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6155,9 +6083,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6187,9 +6113,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6219,9 +6143,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6251,9 +6173,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -6283,9 +6203,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -10816,9 +10734,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "assignable_scopes": [
-              false
-            ],
+            "assignable_scopes": [false],
             "permissions": [
               {
                 "actions": [
@@ -11021,9 +10937,7 @@
             "workspace_resource_id": "/subscriptions/17c55680-1bf5-4c9b-80ce-347ce2e47629/resourceGroups/root-id-3-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-3-la"
           },
           "sensitive_values": {
-            "plan": [
-              {}
-            ],
+            "plan": [{}],
             "tags": {}
           }
         },
@@ -11054,9 +10968,7 @@
             "workspace_resource_id": "/subscriptions/17c55680-1bf5-4c9b-80ce-347ce2e47629/resourceGroups/root-id-3-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-3-la"
           },
           "sensitive_values": {
-            "plan": [
-              {}
-            ],
+            "plan": [{}],
             "tags": {}
           }
         },
@@ -11087,9 +10999,7 @@
             "workspace_resource_id": "/subscriptions/17c55680-1bf5-4c9b-80ce-347ce2e47629/resourceGroups/root-id-3-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-3-la"
           },
           "sensitive_values": {
-            "plan": [
-              {}
-            ],
+            "plan": [{}],
             "tags": {}
           }
         },
@@ -11120,9 +11030,7 @@
             "workspace_resource_id": "/subscriptions/17c55680-1bf5-4c9b-80ce-347ce2e47629/resourceGroups/root-id-3-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-3-la"
           },
           "sensitive_values": {
-            "plan": [
-              {}
-            ],
+            "plan": [{}],
             "tags": {}
           }
         },
@@ -11153,9 +11061,7 @@
             "workspace_resource_id": "/subscriptions/17c55680-1bf5-4c9b-80ce-347ce2e47629/resourceGroups/root-id-3-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-3-la"
           },
           "sensitive_values": {
-            "plan": [
-              {}
-            ],
+            "plan": [{}],
             "tags": {}
           }
         },
@@ -11186,9 +11092,7 @@
             "workspace_resource_id": "/subscriptions/17c55680-1bf5-4c9b-80ce-347ce2e47629/resourceGroups/root-id-3-mgmt/providers/Microsoft.OperationalInsights/workspaces/root-id-3-la"
           },
           "sensitive_values": {
-            "plan": [
-              {}
-            ],
+            "plan": [{}],
             "tags": {}
           }
         },
@@ -11411,15 +11315,11 @@
             "display_name": "Management",
             "name": "root-id-3-management",
             "parent_management_group_id": "/providers/Microsoft.Management/managementGroups/root-id-3-platform",
-            "subscription_ids": [
-              "17c55680-1bf5-4c9b-80ce-347ce2e47629"
-            ],
+            "subscription_ids": ["17c55680-1bf5-4c9b-80ce-347ce2e47629"],
             "timeouts": null
           },
           "sensitive_values": {
-            "subscription_ids": [
-              false
-            ]
+            "subscription_ids": [false]
           }
         },
         {
@@ -11502,9 +11402,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11534,9 +11432,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11566,9 +11462,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11598,9 +11492,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11630,9 +11522,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11662,9 +11552,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11694,9 +11582,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11726,9 +11612,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11758,9 +11642,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11790,9 +11672,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11822,9 +11702,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11854,9 +11732,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11886,9 +11762,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11918,9 +11792,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11950,9 +11822,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -11982,9 +11852,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12014,9 +11882,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12046,9 +11912,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12078,9 +11942,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12110,9 +11972,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12142,9 +12002,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12174,9 +12032,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12206,9 +12062,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12238,9 +12092,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12270,9 +12122,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12302,9 +12152,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12334,9 +12182,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12366,9 +12212,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12398,9 +12242,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12430,9 +12272,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12462,9 +12302,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12494,9 +12332,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -12526,9 +12362,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -17319,9 +17153,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "assignable_scopes": [
-              false
-            ],
+            "assignable_scopes": [false],
             "permissions": [
               {
                 "actions": [
@@ -17501,9 +17333,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
@@ -17533,9 +17363,7 @@
             "timeouts": null
           },
           "sensitive_values": {
-            "identity": [
-              {}
-            ],
+            "identity": [{}],
             "not_scopes": []
           }
         },
