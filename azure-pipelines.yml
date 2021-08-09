@@ -1,9 +1,9 @@
-name: "Terraform Images"
+name: "Enterprise-scale ==> TF-tests"
 
 trigger:
   - main
 
-variables: # Set the values on Azure DevOps build vars
+variables: # Set the values on Azure DevOps build pipeline variables
   ARM_TENANT_ID: $(TENANT_ID)
   ARM_CLIENT_ID: $(CLIENT_ID)
   ARM_CLIENT_SECRET: $(CLIENT_SECRET)
@@ -59,6 +59,8 @@ jobs:
           testResultsFormat: "JUnit"
           testResultsFiles: "**/*.xml"
           searchFolder: "$(System.DefaultWorkingDirectory)"
+          buildPlatform: "$(Agent.OS)-$(Agent.OSArchitecture)"
+          buildConfiguration: $(Build.Repository.Name)
           mergeTestResults: true
-          failTaskOnFailedTests: false
+          failTaskOnFailedTests: true
           testRunTitle: "OPA-Conftest - TF-Version ==>..."
