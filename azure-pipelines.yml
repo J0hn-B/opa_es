@@ -1,4 +1,4 @@
-name: "Enterprise-scale ==> TF-tests"
+name: "Enterprise-scale-tests"
 
 trigger:
   - main
