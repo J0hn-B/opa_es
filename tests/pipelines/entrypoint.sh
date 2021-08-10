@@ -8,7 +8,7 @@ set -e
 #
 # # #
 
-source terraform_env_vars.sh
+source pipelines/terraform_env_vars.sh
 
 # # #* Azure CLI login
 echo "==> Authenticating cli..."

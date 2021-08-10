@@ -1,5 +1,5 @@
 
-FROM mcr.microsoft.com/azure-cli
+FROM mcr.microsoft.com/azure-cli:2.9.1
 
 # # # Set up build arguments
 ARG AZURERM_PROVIDER

@@ -31,6 +31,7 @@ opa-values-generator:
 # # #? Lint code  ==> make code_lint
 code_lint:
 	docker run --rm -e RUN_LOCAL=true -v /home/johnb/temp/opa_es:/tmp/lint ghcr.io/github/super-linter:slim-v4
+	rm ../super-linter.log
 
 
 # # #? Test the local docker image ==> make build_image
