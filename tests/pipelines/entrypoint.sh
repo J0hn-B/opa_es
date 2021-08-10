@@ -8,7 +8,7 @@ set -e
 #
 # # #
 
-source pipelines/terraform_env_vars.sh
+source terraform_env_vars.sh
 
 # # #* Azure CLI login
 echo "==> Authenticating cli..."
@@ -70,7 +70,7 @@ yq <"$TF_PLAN_JSON"_updated_planned_values.json e -P - >../opa/policy/"$TF_PLAN_
 
 wait
 
-echo "==> Check "$TF_PLAN_JSON"_updated_planned_values.yml for errors..."
+echo "==> Check '$TF_PLAN_JSON'_updated_planned_values.yml for errors..."
 yamllint -d "{extends: relaxed, rules: {line-length: {max: 5000, allow-non-breakable-words: true, allow-non-breakable-inline-mappings: true}}}" ../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml
 
 mkdir -p test_results

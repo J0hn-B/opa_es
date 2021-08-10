@@ -6,14 +6,16 @@ Project Description
 
 ### Todo
 
+- [ ] Lint local container with github-super-linter  
+- [ ] Update readme.md  
 
 ### In Progress
 
-- [ ] Move all files inside tests/  
 - [ ] Remove unnecessary code  
 
 ### Done ✓
 
+- [x] Move all files inside tests/  
 - [x] make build_image command to build container locally  
 - [x] Extract test results and publish to azure devops  
 - [x] Standradize makefile functions with make commands  

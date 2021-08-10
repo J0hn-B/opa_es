@@ -28,6 +28,11 @@ opa-values-generator:
 #############################################################################################################
 ###* Development
 #############################################################################################################
+# # #? Lint code  ==> make code_lint
+code_lint:
+	docker run --rm -e RUN_LOCAL=true -v /home/johnb/temp/opa_es:/tmp/lint ghcr.io/github/super-linter:slim-v4
+
+
 # # #? Test the local docker image ==> make build_image
 build_image:
 	docker build --build-arg TERRAFORM_VERSION=1.0.3 --build-arg AZURERM_PROVIDER=2.70.0 -t terraform .
