@@ -3,7 +3,7 @@
 #
 
 #
-# Local Development
+# Values Generator
 #
 
 # # #? Generate values for testing automation ==> make local
@@ -28,6 +28,7 @@ opa-values-generator:
 #############################################################################################################
 ###* Development
 #############################################################################################################
+
 # # #? Lint code  ==> make code_lint
 code_lint:
 	docker run --rm -e RUN_LOCAL=true -v /home/johnb/temp/opa_es:/tmp/lint ghcr.io/github/super-linter:slim-v4
@@ -45,6 +46,7 @@ build_image:
 # # #? Inspect the local docker image ==> make inspect_image
 inspect_image:
 	docker inspect terraform | jq '.[].Config'
+
 
 # # #? Run the local docker image ==> make run_image
 run_image:
