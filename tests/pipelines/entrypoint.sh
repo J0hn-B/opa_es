@@ -7,7 +7,7 @@ set -e
 # - Test Terraform Deployment
 #
 # # #
-
+# shellcheck source=tests/pipelines/terraform_env_vars.sh
 source pipelines/terraform_env_vars.sh
 
 # # #* Azure CLI login
@@ -59,11 +59,11 @@ TEMP_FILE_02=$(mktemp).json
 echo "==> Update planned values..."
 #cd "deployment/"
 pwd
-jq '(.. | strings) |= gsub("root-id-1"; "'"$TF_VAR_root_id_1"'")' planned_values.json >"$TEMP_FILE_01"
-jq '(.. | strings) |= gsub("root-id-2"; "'"$TF_VAR_root_id_2"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
-jq '(.. | strings) |= gsub("root-id-3"; "'"$TF_VAR_root_id_3"'")' "$TEMP_FILE_02" >"$TEMP_FILE_01"
-jq '(.. | strings) |= gsub("root-name"; "'"$TF_VAR_root_name"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
-jq '(.. | strings) |= gsub("eastus"; "'"$TF_VAR_location"'")' "$TEMP_FILE_02" >"$TF_PLAN_JSON"_updated_planned_values.json
+jq '(.. | strings) |= gsub("root-id-1"; "'"${TF_VAR_root_id_1:?}"'")' planned_values.json >"$TEMP_FILE_01"
+jq '(.. | strings) |= gsub("root-id-2"; "'"${TF_VAR_root_id_2:?}"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
+jq '(.. | strings) |= gsub("root-id-3"; "'"${TF_VAR_root_id_3:?}"'")' "$TEMP_FILE_02" >"$TEMP_FILE_01"
+jq '(.. | strings) |= gsub("root-name"; "'"${TF_VAR_root_name:?}"'")' "$TEMP_FILE_01" >"$TEMP_FILE_02"
+jq '(.. | strings) |= gsub("eastus"; "'"${TF_VAR_location:?}"'")' "$TEMP_FILE_02" >"$TF_PLAN_JSON"_updated_planned_values.json
 
 echo "==> Converting to yaml..."
 yq <"$TF_PLAN_JSON"_updated_planned_values.json e -P - >../opa/policy/"$TF_PLAN_JSON"_updated_planned_values.yml

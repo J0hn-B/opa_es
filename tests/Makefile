@@ -38,11 +38,9 @@ code_lint:
 build_image:
 	docker build --build-arg TERRAFORM_VERSION=1.0.3 --build-arg AZURERM_PROVIDER=2.70.0 -t terraform .
 	docker run --name tf_test_result --env-file .env terraform
-	docker cp tf_test_result:tests/opa/test_results/. ./opa/test_results/
-	docker container prune -f --filter "label=tf_version"
-	docker image prune -f --filter "label=tf_version"
-	sleep 5;
-	rm -f ./opa/test_results/*.xml
+	docker container prune -f --filter "label=tfversion"
+	docker image prune -f --filter "label=tfversion"
+
 
 # # #? Inspect the local docker image ==> make inspect_image
 inspect_image:
