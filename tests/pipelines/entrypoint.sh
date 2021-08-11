@@ -6,6 +6,7 @@ set -e
 # Shell Script
 # - Test Terraform Deployment
 #
+
 # # #
 # shellcheck source=tests/pipelines/terraform_env_vars.sh
 source pipelines/terraform_env_vars.sh
