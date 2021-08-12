@@ -5,7 +5,7 @@
         {
           "address": "module.test_root_id_1.azurerm_management_group.level_1[\"/providers/Microsoft.Management/managementGroups/root-id-1\"]",
           "mode": "managed",
-          "type": "azurerm_management_grou",
+          "type": "azurerm_management_group",
           "name": "level_1",
           "index": "/providers/Microsoft.Management/managementGroups/root-id-1",
           "provider_name": "registry.terraform.io/hashicorp/azurerm",
