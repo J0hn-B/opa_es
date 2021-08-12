@@ -28,7 +28,7 @@ Docker for desktop is required.
 
    - `make code_lint` ==> Lint code locally before pushing on repo.
 
-     - Important > Update the path in makefile by replacing `/home/johnb/temp/opa_es` with your own path.
+     - > Important: Update the path in makefile by replacing `/home/johnb/temp/opa_es` with your own path.
 
        ![image](https://user-images.githubusercontent.com/40946247/129194300-7ff4ca52-fe27-492d-a174-03f959d52556.png)
 
@@ -78,3 +78,9 @@ The tests `.xml` files are exported to the host agent and published as pipeline 
    ![image](https://user-images.githubusercontent.com/40946247/129193280-858c35bd-1ca7-405d-b1ec-7b798f3d127a.png)
 
    ![image](https://user-images.githubusercontent.com/40946247/129193383-4f0e4d1c-00aa-4222-8188-3f722a08ba24.png)
+
+   ![image](https://user-images.githubusercontent.com/40946247/129197735-177b04bb-abce-4c0f-b485-431f4c853f4f.png)
+
+   ![image](https://user-images.githubusercontent.com/40946247/129197882-09a75d48-cb3d-431b-8508-e981310aaa3b.png)
+
+   > Tip: <https://ardalis.com/add-images-easily-to-github/>
