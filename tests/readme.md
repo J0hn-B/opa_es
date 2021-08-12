@@ -30,6 +30,8 @@ Docker for desktop is required.
 
      - Important > Update the path in makefile by replacing `/home/johnb/temp/opa_es` with your own path.
 
+       ![image](https://user-images.githubusercontent.com/40946247/129194300-7ff4ca52-fe27-492d-a174-03f959d52556.png)
+
    - Create a `.env` file inside `tests/` dir and add the Azure subscription details. `.gitignore` will ignore the `.env`file.
 
      - The `.env` file will look like this:
@@ -52,7 +54,7 @@ Docker for desktop is required.
 
 Using Microsoft-hosted agents, we build and run the container image on the host agent.
 
-The tests `.xml` files are exported to the host agent and published as pipelines test results.
+The tests `.xml` files are exported to the host agent and published as pipeline test results.
 
 1. Create a new build pipeline using the `azure-pipelines.yaml` on `tests/` dir
 
