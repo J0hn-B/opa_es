@@ -1,82 +1,78 @@
 # Test suite for CAF Terraform Module
 
-The CAF Terraform Module is able to deploy different groups of resources depending on the selected options. The module also requires a minimum azurerm provider version of `2.41.0` and it is compatible with a selection of Terraform versions, as described in the module's official wiki page.
+## Structure
 
-[Open Policy Agent](https://www.openpolicyagent.org/docs/latest) is an open source, general-purpose policy engine that unifies policy enforcement across the stack.
+- Generate local values process remains the same
 
-We are using Open Policy Agent to test and validate the hcl code generates the expected values and also to verify that recent code changes haven't altered existing functionality.
+- The "remote test process" runs inside a container.
 
-## Resources
+- `deployment` and `opa` directories have zero changes.
 
-With Open Policy Agent being the policy engine, a set of utilities is required to complete the testing process:
+- **`scripts`** directory contains only the scripts for generating local values.
 
-- [jq](https://stedolan.github.io/jq/), a json parser
-- [yq](https://github.com/mikefarah/yq), a yaml parser
-- [yamllint](https://yamllint.readthedocs.io/en/stable/), a yaml linter
-- [Conftest](https://www.conftest.dev/), automation utility for Open Policy Agent
+- **`pipelines`** directory contains `entrypoint.sh` and the `terraform_env_vars.sh`. Both of them running inside the container.
 
-## How it works
+- `entrypoint.sh` holds the logic for terraform plan and opa tests execution, `terraform_env_vars.sh` sets and exports the terraform module(s) vars
 
-The test suite is used to verify the values generated from the module(s) between different terraform versions and different terraform providers.
+Docker for desktop is required.
 
-- Running locally the first time, a `terraform plan` is generated using the terraform version and azurerm provider of your environment. A `planned_values` file containing data which will be used as `--data` input when testing, is created.
+### How to
 
-  - Using `planned_values` file, tests are executed locally and expected to be successful.
+1. Create or update the terraform files on `deployment` dir.
 
-    - The, locally generated, `planned_values` file is saved and after pushed in the repo, used as Conftest `--data` input against different terraform versions and different terraform providers on the remote pipeline runners.
+2. Update the terraform variables and their exports in `pipelines/terraform_env_vars.sh`
 
-### Workstation
+3. All the processes are available through `make`. From inside `tests/` dir run:
 
-1. The `opa-values-generator.sh` or `.ps1` script will read the `.tf` files in the deployment directory and generate a plan with `terraform plan`.
+   - `make local` ==> Generate values for testing automation
 
-2. Will convert that plan to a \*.json file. Next, will extract the module(s) `planned_values` and validate they are equal to the plan's `changed_values`. A file `planned_values.json` is generated and stored in the `deployment` directory.
+   - `make code_lint` ==> Lint code locally before pushing on repo.
 
-3. Using the `planned_values` all the tests are executed locally to verify the values and Open Policy Agent rules behavior.
+     Update the path in makefile by replacing `/home/johnb/temp/opa_es` with your own path.
 
-4. The `planned_values.json` is saved and added to the `deployment`. Will be used later from the automation pipeline runners.
+   - Create a `.env` file inside `tests/` dir and add the Azure subscription details. `.gitignore` will ignore the `.env`file.
 
-### Usage
+     - The `.env` file will look like this:
 
-**From your workstation:**
+       ```docker
 
-1. Update the terraform files in `tests/deployment/` directory.
+        ARM_TENANT_ID=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+        ARM_CLIENT_ID=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+        ARM_CLIENT_SECRET=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+        ARM_SUBSCRIPTION_ID=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+       ```
 
-2. Verify `tests/deployment/variables.tf` declared variables have been set as input variables in `opa-values-generator.sh` or `.ps1` script.
+       - `make build_image` to build an image locally and verify the build and run success.
 
-![3](https://user-images.githubusercontent.com/40946247/127203542-62670f7d-fbca-4be7-81d7-526c57896852.png)
+   - `make inspect_image` ==> Inspect the local docker image
 
-**Option 1:**
+   - `make run_image` ==> Run the docker image locally and access the container's cmd.
 
-From within `tests/` directory:
+### Azure Pipelines
 
-`make`
+Using Microsoft-hosted agents, we build and run the container image on the host agent.
 
-A `planned_values.json` is added in your deployment directory.
+The tests `.xml` files are exported to the host agent and published as pipelines test results.
 
-Will be used later in the automation pipelines.
+1. Create a new build pipeline using the `azure-pipelines.yaml` on `tests/` dir
 
-![image](https://user-images.githubusercontent.com/40946247/127209046-0c667eca-b38d-453a-b724-7da49779689b.png)
+2. Add the variables in the pipeline:
 
-**Option 2:**
+   ```azure-pipelines
+   TENANT_ID=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+   CLIENT_ID=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+   CLIENT_SECRET=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+   SUBSCRIPTION_ID=xxxxx-xxx-xxxxxxx-xxxxxxxx-xxxxx
+   ```
 
-Navigate to the modules `tests` directory.
+   ![image](https://user-images.githubusercontent.com/40946247/129191753-2744a560-eafc-4689-a1fd-f41e62b5a756.png)
 
-- create a new dir: `mkdir deployment_2 && cd deployment_2`
+3. Set the Terraform and Azure Provider version:
 
-- create a new file: `touch main.tf`
+   ![image](https://user-images.githubusercontent.com/40946247/129192194-8e985e7a-b847-4ac6-a759-abefac94fce9.png)
 
-- Copy paste the terraform code from the [Deploy-Default-Configuration](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Default-Configuration) example in your `deployment_2/main.tf`
+4. Check the results:
 
-- From the `deployment` directory, copy paste the `variables.tf` file in your `deployment_2` directory.
+   ![image](https://user-images.githubusercontent.com/40946247/129193280-858c35bd-1ca7-405d-b1ec-7b798f3d127a.png)
 
-- In your `tests/scripts/opa-values-generator.sh`, update the path in line 26:
-  **MODULE_PATH="../deployment_2"**
-
-- From within `tests/` directory:
-
-  - `make`
-
-- Delete dir `deployment_2`
-
-- In your `tests/scripts/opa-values-generator.sh`, update the path back to the original value in line 26:
-  **MODULE_PATH="../deployment"**
+   ![image](https://user-images.githubusercontent.com/40946247/129193383-4f0e4d1c-00aa-4222-8188-3f722a08ba24.png)
