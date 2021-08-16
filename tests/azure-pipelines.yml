@@ -37,6 +37,30 @@ jobs:
             echo "Terraform_Version is:$TERRAFORM_VERSION"
             echo "Azurerm_Provider is:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
+
+      - task: Bash@3
+        name: "scan"
+        inputs:
+          targetType: "inline"
+          script: |
+            docker run \
+              -e "VDB_HOME=/reports/vdb" \
+              -v "$(Build.SourcesDirectory):/app" \
+              -v "$(Build.ArtifactStagingDirectory):/reports" \
+              -u $(id -u):$(id -g) \
+              shiftleft/sast-scan scan --src /app --build \
+              --out_dir /reports/CodeAnalysisLogs --no-error
+              displayName: "Perform Scan"
+              continueOnError: "true"
+          workingDirectory: "tests/"
+
+      - task: PublishBuildArtifacts@1
+        displayName: "Publish analysis logs"
+        inputs:
+          PathtoPublish: "$(Build.ArtifactStagingDirectory)/CodeAnalysisLogs"
+          ArtifactName: "CodeAnalysisLogs"
+          publishLocation: "Container"
+
       - task: Bash@3
         name: "docker_build"
         inputs:

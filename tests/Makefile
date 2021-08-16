@@ -35,8 +35,9 @@ opa-values-generator:
 # # #? Lint code  ==> make code_lint
 code_lint:
 	docker run --rm -e RUN_LOCAL=true -v /home/johnb/temp/$(REPO):/tmp/lint ghcr.io/github/super-linter:slim-v4
-	docker run -v ${PWD}:/my-repo zricethezav/gitleaks:latest --path="/my-repo"
+	docker run --rm -e "WORKSPACE=${PWD}" -v "$PWD:/app" shiftleft/sast-scan scan
 	rm ../super-linter.log
+	rm -rf reports
 
 
 # # #? Test the local docker image ==> make build_image
