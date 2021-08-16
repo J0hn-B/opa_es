@@ -38,20 +38,16 @@ jobs:
             echo "Azurerm_Provider is:$AZURERM_PROVIDER"
           workingDirectory: "tests/"
 
-      - task: Bash@3
-        name: "scan"
-        inputs:
-          targetType: "inline"
-          script: |
-            docker run \
-              -e "VDB_HOME=/reports/vdb" \
-              -v "$(Build.SourcesDirectory):/app" \
-              -v "$(Build.ArtifactStagingDirectory):/reports" \
-              -u $(id -u):$(id -g) \
-              shiftleft/sast-scan scan --src /app --build \
-              --out_dir /reports/CodeAnalysisLogs --no-error
-              displayName: "Perform Scan"
-              continueOnError: "true"
+      - script: |
+          docker run \
+            -e "VDB_HOME=/reports/vdb" \
+            -v "$(Build.SourcesDirectory):/app" \
+            -v "$(Build.ArtifactStagingDirectory):/reports" \
+            -u $(id -u):$(id -g) \
+            shiftleft/sast-scan scan --src /app --build \
+            --out_dir /reports/CodeAnalysisLogs --no-error
+        displayName: "Perform Scan"
+        continueOnError: "true"
 
       - task: PublishBuildArtifacts@1
         displayName: "Publish analysis logs"
