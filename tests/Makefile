@@ -6,6 +6,9 @@
 # Values Generator
 #
 
+# # #* Variables
+REPO := $(shell basename `git rev-parse --show-toplevel`)
+
 # # #? Generate values for testing automation ==> make local
 
 local: opa-install \
@@ -31,7 +34,7 @@ opa-values-generator:
 
 # # #? Lint code  ==> make code_lint
 code_lint:
-	docker run --rm -e RUN_LOCAL=true -v /home/johnb/temp/opa_es:/tmp/lint ghcr.io/github/super-linter:slim-v4
+	docker run --rm -e RUN_LOCAL=true -v /home/johnb/temp/$(REPO):/tmp/lint ghcr.io/github/super-linter:slim-v4
 	rm ../super-linter.log
 
 

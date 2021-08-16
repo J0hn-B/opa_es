@@ -28,10 +28,6 @@ Docker for desktop is required.
 
    - `make code_lint` ==> Lint code locally before pushing on repo.
 
-     - > Important: Update the path in makefile by replacing `/home/johnb/temp/opa_es` with your own path.
-
-       ![image](https://user-images.githubusercontent.com/40946247/129194300-7ff4ca52-fe27-492d-a174-03f959d52556.png)
-
    - Create a `.env` file inside `tests/` dir and add the Azure subscription details. `.gitignore` will ignore the `.env`file.
 
      - The `.env` file will look like this:
