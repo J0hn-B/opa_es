@@ -52,7 +52,6 @@ jobs:
               --out_dir /reports/CodeAnalysisLogs --no-error
               displayName: "Perform Scan"
               continueOnError: "true"
-          workingDirectory: "tests/"
 
       - task: PublishBuildArtifacts@1
         displayName: "Publish analysis logs"
