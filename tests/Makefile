@@ -9,6 +9,9 @@
 # # #* Variables
 REPO := $(shell basename `git rev-parse --show-toplevel`)
 
+# # # The name of the local image to be tested for security vulnerabilities and best practices <https://github.com/goodwithtech/dockle>
+SECURITY_TEST_IMAGE_NAME := registry
+
 # # #? Generate values for testing automation ==> make local
 
 local: opa-install \
@@ -53,3 +56,7 @@ inspect_image:
 # # #? Run the local docker image ==> make run_image
 run_image:
 	docker run --name tf_test_result -it --rm terraform /bin/bash
+
+# # #? Verify docker image basic security after building locally  ==> make docker_security
+docker_security:	
+	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock goodwithtech/dockle:v0.3.15 $(SECURITY_TEST_IMAGE_NAME)
