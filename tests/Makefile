@@ -7,10 +7,10 @@
 #
 
 # # #* Variables
-REPO := $(shell basename `git rev-parse --show-toplevel`)
+REPO := $(shell git rev-parse --show-toplevel)
 
 # # # The name of the local image to be tested for security vulnerabilities and best practices <https://github.com/goodwithtech/dockle>
-SECURITY_TEST_IMAGE_NAME := registry
+SECURITY_TEST_IMAGE_NAME := terraform
 
 # # #? Generate values for testing automation ==> make local
 
@@ -37,8 +37,15 @@ opa-values-generator:
 
 # # #? Lint code  ==> make code_lint
 code_lint:
-	docker run --rm -e RUN_LOCAL=true -v /home/johnb/temp/$(REPO):/tmp/lint ghcr.io/github/super-linter:slim-v4
+	docker run --rm -e RUN_LOCAL=true -v $(REPO):/tmp/lint ghcr.io/github/super-linter:slim-v4
 	rm ../super-linter.log
+
+
+# # #? Verify docker image basic security after building locally  ==> make docker_security
+docker_security:
+	docker run --rm -it -e CI=true -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive:latest  $(SECURITY_TEST_IMAGE_NAME) 	
+	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock goodwithtech/dockle:v0.3.15 $(SECURITY_TEST_IMAGE_NAME)
+
 
 # # #? Test the local docker image ==> make build_image
 build_image:
@@ -56,7 +63,3 @@ inspect_image:
 # # #? Run the local docker image ==> make run_image
 run_image:
 	docker run --name tf_test_result -it --rm terraform /bin/bash
-
-# # #? Verify docker image basic security after building locally  ==> make docker_security
-docker_security:	
-	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock goodwithtech/dockle:v0.3.15 $(SECURITY_TEST_IMAGE_NAME)
